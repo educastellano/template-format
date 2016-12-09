@@ -8,6 +8,10 @@ Simple string formatting with support for nested data.
 
 # Usage
 
+```js
+import format from 'template-format'
+```
+
 * Format passing objects
 
 ```js
