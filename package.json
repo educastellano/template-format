@@ -1,0 +1,22 @@
+{
+  "name": "template-format",
+  "version": "1.0.0",
+  "description": "Simple string formatting with support for nested data.",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/educastellano/template-format.git"
+  },
+  "author": "Eduard Castellano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/educastellano/template-format/issues"
+  },
+  "homepage": "https://github.com/educastellano/template-format#readme",
+  "devDependencies": {
+    "tape": "^4.4.0"
+  }
+}
