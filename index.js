@@ -3,7 +3,8 @@ function format(string, object, options={}) {
     if (typeof string !== 'string') {
         return string
     }
-    return string.replace(/{(.*?)}/g, (...match) => {   
+    let regex = options.regex || /{(.*?)}/g
+    return string.replace(regex, (...match) => {
         let attrs = match[1].split('.')
         let value = object
         for (let attr of attrs) {

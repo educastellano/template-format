@@ -44,7 +44,6 @@ test('it should *not* skip undefined attributes when *not* using the option skip
     let object = {name: 'Bob'}
 
     let result = format(string, object)
-    console.log(result)
 
     t.equals(result, 'Hello Bob, happy  bday! I call you at ');
     t.end();
@@ -56,8 +55,17 @@ test('it should skip undefined attributes when using the option skipUndefined', 
     let object = {name: 'Bob'}
 
     let result = format(string, object, { skipUndefined: true })
-    console.log(result)
 
     t.equals(result, 'Hello Bob, happy {age} bday! I call you at {bob.contact.phone}');
+    t.end();
+});
+
+test('it should format strings with a different format syntax', function (t) {
+    let string = 'Hello {{name}}, happy {{age}} bday!'
+    let object = {name: 'Bob', age: 32}
+
+    let result = format(string, object, { regex: /{{(.*?)}}/g })
+
+    t.equals(result, 'Hello Bob, happy 32 bday!');
     t.end();
 });
