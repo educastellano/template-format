@@ -2,31 +2,31 @@
 
 Simple string formatting with support for nested data.
 
-# Install
+## Install
 
     npm install template-format --save
 
-# Usage
+## Usage
 
 ```js
 import format from 'template-format'
 ```
 
-* Format passing objects
+**Passing objects**
 
 ```js
 format('Hello {name}, happy {age} bday!', {name: 'Bob', age: 32})
 // 'Hello Bob, happy 32 bday!'
 ```
 
-* Format passing arrays
+**Passing arrays**
 
 ```js
 format('Hello {0}, happy {1} bday!', ['Bob', 32])
 // 'Hello Bob, happy 32 bday!'
 ```
 
-* Format with nested data
+**With nested data**
 
 ```js
 format('Hello {bob.name}, happy {bob.age} bday! I call you at {bob.contact.phone}', {
@@ -40,6 +40,34 @@ format('Hello {bob.name}, happy {bob.age} bday! I call you at {bob.contact.phone
     })
 // 'Hello Bob, happy 32 bday! I call you at 978090909'
 ```
+
+**Other Options**
+
+* Skip undefined attributes:
+
+```js
+format('Hello {name}, happy {age} bday!', {name: 'Bob'})
+// 'Hello Bob, happy bday!'
+```
+
+```js
+format('Hello {name}, happy {age} bday!', {name: 'Bob'}, { skipUndefined: true })
+// 'Hello Bob, happy {age} bday!'
+```
+
+## Syntax
+
+```js
+const formattedText = format(text, data, options={})
+```
+
+Parameter                     | Type       | Default       | Description
+---                           | ---        | ---           | ---
+`text`                        | `string`   |               | Text to format
+`data`                        | `object`   |               | The data :)
+`options`                     | `object`   | `{}`          | **Optional** Extra options, read below.
+`options.skipUndefined`       | `object`   | `false`       | **Optional** Skips formatting parameters which are missing in the object, keeping the original text. Otherwise they'll be replaced by an empty string. 
+
 
 ## Changelog
 
