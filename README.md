@@ -85,7 +85,7 @@ format('Hello {{name}}, happy {{age}} bday!', { name: 'Bob', age: 32}, { regex: 
 // 'Hello Bob, happy 32 bday!'
 ```
 
-**Custom spreading**
+* Custom spreading
 
 ```js
 format('Hello {people.$$.name}!', { people: [{ name: 'Bob' }, { name: 'Mary' }] }, { spreadToken: '$$', spreadSeparator: ', ' })
