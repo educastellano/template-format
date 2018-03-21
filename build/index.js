@@ -1,49 +1,53 @@
 'use strict';
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var defaults = {
+    regex: /{(.*?)}/g,
+    skipUndefined: false,
+    spreadToken: '$n',
+    spreadSeparator: ','
+};
+
+function formatMatch(match, attrs, value, options) {
+    var _loop = function _loop(i) {
+        var attr = attrs[i];
+        if (attr === options.spreadToken && Array.isArray(value)) {
+            return {
+                v: value.map(function (v) {
+                    return formatMatch(match, attrs.slice(i + 1), v, options);
+                }).join(options.spreadSeparator)
+            };
+        }
+        value = value ? value[attr] : undefined;
+    };
+
+    for (var i = 0; i < attrs.length; i++) {
+        var _ret = _loop(i);
+
+        if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+    }
+    if (!value && options.skipUndefined) {
+        return match;
+    } else {
+        return value || '';
+    }
+}
+
 function format(string, object) {
     var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 
     if (typeof string !== 'string') {
         return string;
     }
-    var regex = options.regex || /{(.*?)}/g;
-    return string.replace(regex, function () {
+    options = Object.assign({}, defaults, options);
+    return string.replace(options.regex, function () {
         for (var _len = arguments.length, match = Array(_len), _key = 0; _key < _len; _key++) {
             match[_key] = arguments[_key];
         }
 
         var attrs = match[1].split('.');
-        var value = object;
-        var _iteratorNormalCompletion = true;
-        var _didIteratorError = false;
-        var _iteratorError = undefined;
-
-        try {
-            for (var _iterator = attrs[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-                var attr = _step.value;
-
-                value = value ? value[attr] : undefined;
-            }
-        } catch (err) {
-            _didIteratorError = true;
-            _iteratorError = err;
-        } finally {
-            try {
-                if (!_iteratorNormalCompletion && _iterator.return) {
-                    _iterator.return();
-                }
-            } finally {
-                if (_didIteratorError) {
-                    throw _iteratorError;
-                }
-            }
-        }
-
-        if (!value && options.skipUndefined) {
-            return match[0];
-        } else {
-            return value || '';
-        }
+        return formatMatch(match[0], attrs, object, options);
     });
 }
 
