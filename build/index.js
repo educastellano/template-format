@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var defaults = {
@@ -30,7 +32,7 @@ function formatMatch(match, attrs, value, options) {
     if (!value && options.skipUndefined) {
         return match;
     } else {
-        return value || '';
+        return value === undefined ? '' : value;
     }
 }
 
@@ -40,7 +42,7 @@ function format(string, object) {
     if (typeof string !== 'string') {
         return string;
     }
-    options = Object.assign({}, defaults, options);
+    options = _extends({}, defaults, options);
     return string.replace(options.regex, function () {
         for (var _len = arguments.length, match = Array(_len), _key = 0; _key < _len; _key++) {
             match[_key] = arguments[_key];
