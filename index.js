@@ -18,7 +18,7 @@ function formatMatch(match, attrs, value, options) {
         return match
     }
     else {
-        return value || ''
+        return value === undefined ? '' : value
     }
 }
 
@@ -26,7 +26,7 @@ function format(string, object, options={}) {
     if (typeof string !== 'string') {
         return string
     }
-    options = Object.assign({}, defaults, options)
+    options = { ...defaults, ...options }
     return string.replace(options.regex, (...match) => {
         let attrs = match[1].split('.')
         return formatMatch(match[0], attrs, object, options)

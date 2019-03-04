@@ -40,12 +40,12 @@ test('it should format strings passing arrays', function (t) {
 });
 
 test('it should format strings passing arrays of objects', function (t) {
-    let string = '{0.name} is {0.age}, {1.name} is {1.age}'
-    let array = [{ name: 'Bob', age: 32 }, { name: 'Mary', age: 30 }]
+    let string = '{0.name} is {0.age}, {1.name} is {1.age}, {2.name} is {2.age}'
+    let array = [{ name: 'Bob', age: 32 }, { name: 'Mary', age: 30 }, { name: 'Baby', age: 0 }]
 
     let result = format(string, array)
 
-    t.equals(result, 'Bob is 32, Mary is 30');
+    t.equals(result, 'Bob is 32, Mary is 30, Baby is 0');
     t.end();
 });
 
@@ -66,6 +66,16 @@ test('it should format strings spreading object:array:object, using $n', functio
     let result = format(string, array)
 
     t.equals(result, 'Hello bob,mary,julia!');
+    t.end();
+});
+
+test('it should format strings spreading object:array:object, using $n and numbers as value', function (t) {
+    let string = 'Ages: {people.$n.age}'
+    let array = { people: [{ name: 'bob', age: 22 }, { name: 'mary', age: 30 }, { name: 'baby', age: 0 }] }
+
+    let result = format(string, array)
+
+    t.equals(result, 'Ages: 22,30,0');
     t.end();
 });
 
