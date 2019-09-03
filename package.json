@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel index.js --out-dir build",
     "test": "tape test.js",
-    "preversion": "yarn run build && git add build"
+    "preversion": "yarn run test && yarn run build && git add build"
   },
   "repository": {
     "type": "git",
