@@ -6,7 +6,8 @@
   "scripts": {
     "build": "babel index.js --out-dir build",
     "test": "tape test.js",
-    "preversion": "npm run test && npm run build && git add build"
+    "preversion": "npm run test && npm run build && git add build",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",

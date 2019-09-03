@@ -4,7 +4,7 @@ Simple string formatting with support for nested data.
 
 ## Install
 
-    npm install template-format --save
+    npm install template-format
 
 ## Syntax
 
