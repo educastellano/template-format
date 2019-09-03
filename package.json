@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel index.js --out-dir build",
     "test": "tape test.js",
-    "preversion": "yarn run test && yarn run build && git add build"
+    "preversion": "npm run test && npm run build && git add build"
   },
   "repository": {
     "type": "git",
@@ -32,5 +32,6 @@
     "plugins": [
       "@babel/plugin-proposal-object-rest-spread"
     ]
-  }
+  },
+  "dependencies": {}
 }
