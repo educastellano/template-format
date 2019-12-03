@@ -1,6 +1,6 @@
 {
   "name": "template-format",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Simple string formatting with support for nested data.",
   "main": "build/index.js",
   "scripts": {
