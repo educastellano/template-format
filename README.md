@@ -4,7 +4,9 @@ Simple string formatting with support for nested data.
 
 ## Install
 
-    npm install template-format
+```sh
+npm install template-format
+```
 
 ## Syntax
 
@@ -12,15 +14,15 @@ Simple string formatting with support for nested data.
 const formattedText = format(text, data, options)
 ```
 
-| Parameter                 | Type     | Default      | Description                                                                                                                                            |
-| ------------------------- | -------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `text`                    | `string` |              | Text to format                                                                                                                                         |
-| `object`                  | `object` |              | The object or array containing the data to be used for formatting.                                                                                     |
-| `options`                 | `object` | `{}`         | **Optional** Extra options, read below.                                                                                                                |
-| `options.regex`           | `regex`  | `/{(.*?)}/g` | **Optional** Alternative regex for different format syntaxes _(i.e.: `Hello {{name}}!`)_. Must include the global match modifier (`g`).                |
+| Parameter                 | Type      | Default      | Description                                                                                                                                            |
+| ------------------------- | --------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `text`                    | `string`  |              | Text to format                                                                                                                                         |
+| `object`                  | `object`  |              | The object or array containing the data to be used for formatting.                                                                                     |
+| `options`                 | `object`  | `{}`         | **Optional** Extra options, read below.                                                                                                                |
+| `options.regex`           | `regex`   | `/{(.*?)}/g` | **Optional** Alternative regex for different format syntaxes _(i.e.: `Hello {{name}}!`)_. Must include the global match modifier (`g`).                |
 | `options.skipUndefined`   | `boolean` | `false`      | **Optional** Skips formatting parameters which are missing in the object, keeping the original text. Otherwise they'll be replaced by an empty string. |
-| `options.spreadToken`     | `string` | `$n`         | **Optional** Token used on arrays to indicate that the following attributes have to be applied in each element (See example below).                    |
-| `options.spreadSeparator` | `string` | `,`          | **Optional** String used on arrays to separate of the formatting in each element.                                                                      |
+| `options.spreadToken`     | `string`  | `$n`         | **Optional** Token used on arrays to indicate that the following attributes have to be applied in each element (See example below).                    |
+| `options.spreadSeparator` | `string`  | `,`          | **Optional** String used on arrays to separate of the formatting in each element.                                                                      |
 
 ## Usage
 
