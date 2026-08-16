@@ -15,7 +15,7 @@ function formatMatch(match, attrs, value, options) {
     }
     value = value ? value[attr] : undefined
   }
-  if (!value && options.skipUndefined) {
+  if (value === undefined && options.skipUndefined) {
     return match
   } else {
     return value === undefined ? '' : value

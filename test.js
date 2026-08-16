@@ -141,6 +141,22 @@ test('it should skip undefined attributes when using the option skipUndefined', 
   t.is(result, 'Hello Bob, happy {age} bday! I call you at {bob.contact.phone}')
 })
 
+test('it should not skip defined falsy attributes when using the option skipUndefined', function (t) {
+  const values = [
+    [0, '0'],
+    [false, 'false'],
+    ['', ''],
+    [null, 'null'],
+    [NaN, 'NaN']
+  ]
+
+  for (const [value, expected] of values) {
+    const result = format('Value: {value}!', { value }, { skipUndefined: true })
+
+    t.is(result, `Value: ${expected}!`)
+  }
+})
+
 test('it should format strings with a different format syntax', function (t) {
   const string = 'Hello {{name}}, happy {{age}} bday!'
   const object = { name: 'Bob', age: 32 }
