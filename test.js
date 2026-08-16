@@ -1,4 +1,4 @@
-var test = require('tape');
+var test = require('brittle');
 var format = require('./index')
 
 test('it should format strings with different attributes of an object', function (t) {
@@ -7,8 +7,7 @@ test('it should format strings with different attributes of an object', function
 
     let result = format(string, object)
 
-    t.equals(result, 'Hello Bob, happy 32 bday!');
-    t.end();
+    t.is(result, 'Hello Bob, happy 32 bday!');
 });
 
 test('it should format strings with nested attributes', function (t) {
@@ -25,8 +24,7 @@ test('it should format strings with nested attributes', function (t) {
 
     let result = format(string, object)
 
-    t.equals(result, 'Hello Bob, happy 32 bday! I call you at 978090909');
-    t.end();
+    t.is(result, 'Hello Bob, happy 32 bday! I call you at 978090909');
 });
 
 test('it should format strings passing arrays', function (t) {
@@ -35,8 +33,7 @@ test('it should format strings passing arrays', function (t) {
 
     let result = format(string, array)
 
-    t.equals(result, 'Hello Bob, happy 32 bday!');
-    t.end();
+    t.is(result, 'Hello Bob, happy 32 bday!');
 });
 
 test('it should format strings passing arrays of objects', function (t) {
@@ -45,8 +42,7 @@ test('it should format strings passing arrays of objects', function (t) {
 
     let result = format(string, array)
 
-    t.equals(result, 'Bob is 32, Mary is 30, Baby is 0');
-    t.end();
+    t.is(result, 'Bob is 32, Mary is 30, Baby is 0');
 });
 
 test('it should format strings spreading arrays of objects, using $n', function (t) {
@@ -55,8 +51,7 @@ test('it should format strings spreading arrays of objects, using $n', function 
 
     let result = format(string, array)
 
-    t.equals(result, 'Hello bob,mary,julia!');
-    t.end();
+    t.is(result, 'Hello bob,mary,julia!');
 });
 
 test('it should format strings spreading object:array:object, using $n', function (t) {
@@ -65,8 +60,7 @@ test('it should format strings spreading object:array:object, using $n', functio
 
     let result = format(string, array)
 
-    t.equals(result, 'Hello bob,mary,julia!');
-    t.end();
+    t.is(result, 'Hello bob,mary,julia!');
 });
 
 test('it should format strings spreading object:array:object, using $n and numbers as value', function (t) {
@@ -75,8 +69,7 @@ test('it should format strings spreading object:array:object, using $n and numbe
 
     let result = format(string, array)
 
-    t.equals(result, 'Ages: 22,30,0');
-    t.end();
+    t.is(result, 'Ages: 22,30,0');
 });
 
 test('it should format strings spreading object:array:object:array, using $n', function (t) {
@@ -85,8 +78,7 @@ test('it should format strings spreading object:array:object:array, using $n', f
 
     let result = format(string, array)
 
-    t.equals(result, 'Hello bob,abc,def,mary,ghi,jkl!');
-    t.end();
+    t.is(result, 'Hello bob,abc,def,mary,ghi,jkl!');
 });
 
 test('it should format strings spreading object:array:object:array:object, using $n', function (t) {
@@ -99,8 +91,7 @@ test('it should format strings spreading object:array:object:array:object, using
 
     let result = format(string, array)
 
-    t.equals(result, 'Hello bob,abc,def,mary,ghi,jkl!');
-    t.end();
+    t.is(result, 'Hello bob,abc,def,mary,ghi,jkl!');
 });
 
 test('it should format strings using a custom spreadToken', function (t) {
@@ -109,8 +100,7 @@ test('it should format strings using a custom spreadToken', function (t) {
 
     let result = format(string, array, { spreadToken: '$$' })
 
-    t.equals(result, 'Hello bob,mary,julia!');
-    t.end();
+    t.is(result, 'Hello bob,mary,julia!');
 });
 
 test('it should format strings using a custom spreadSeparator', function (t) {
@@ -119,8 +109,7 @@ test('it should format strings using a custom spreadSeparator', function (t) {
 
     let result = format(string, array, { spreadSeparator: ' ' })
 
-    t.equals(result, 'Hello bob mary julia!');
-    t.end();
+    t.is(result, 'Hello bob mary julia!');
 });
 
 test('it should *not* skip undefined attributes when *not* using the option skipUndefined', function (t) {
@@ -129,8 +118,7 @@ test('it should *not* skip undefined attributes when *not* using the option skip
 
     let result = format(string, object)
 
-    t.equals(result, 'Hello Bob, happy  bday! I call you at ');
-    t.end();
+    t.is(result, 'Hello Bob, happy  bday! I call you at ');
 });
 
 
@@ -140,8 +128,7 @@ test('it should skip undefined attributes when using the option skipUndefined', 
 
     let result = format(string, object, { skipUndefined: true })
 
-    t.equals(result, 'Hello Bob, happy {age} bday! I call you at {bob.contact.phone}');
-    t.end();
+    t.is(result, 'Hello Bob, happy {age} bday! I call you at {bob.contact.phone}');
 });
 
 test('it should format strings with a different format syntax', function (t) {
@@ -150,6 +137,5 @@ test('it should format strings with a different format syntax', function (t) {
 
     let result = format(string, object, { regex: /{{(.*?)}}/g })
 
-    t.equals(result, 'Hello Bob, happy 32 bday!');
-    t.end();
+    t.is(result, 'Hello Bob, happy 32 bday!');
 });

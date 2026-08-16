@@ -2,12 +2,9 @@
   "name": "template-format",
   "version": "1.2.5",
   "description": "Simple string formatting with support for nested data.",
-  "main": "build/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "babel index.js --out-dir build",
-    "test": "tape test.js",
-    "preversion": "npm run test && npm run build && git add build",
-    "postversion": "git push && git push --tags"
+    "test": "brittle-node test.js"
   },
   "repository": {
     "type": "git",
@@ -19,20 +16,7 @@
     "url": "https://github.com/educastellano/template-format/issues"
   },
   "homepage": "https://github.com/educastellano/template-format#readme",
-  "devDependencies": {
-    "@babel/cli": "^7.5.5",
-    "@babel/core": "^7.5.5",
-    "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
-    "@babel/preset-env": "^7.5.5",
-    "tape": "^4.11.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      "@babel/plugin-proposal-object-rest-spread"
-    ]
-  },
-  "dependencies": {}
+  "dependencies": {
+    "brittle": "^4.1.0"
+  }
 }
