@@ -100,6 +100,10 @@ format(
 
 ## Changelog
 
+- 2.0.0
+  - Remove build step and babel deps
+  - Replace tape for brittle, add lunte, prettier and CI
+  - Fix skipUndefined mishandling falsy values
 - 1.2.0
   - Support to spread formatting on arrays
   - Customizable spreading with `spreadToken` and `spreadSeparator`
