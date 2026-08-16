@@ -4,6 +4,8 @@
   "description": "Simple string formatting with support for nested data.",
   "main": "index.js",
   "scripts": {
+    "format": "prettier --write . && lunte --fix",
+    "lint": "prettier --check . && lunte",
     "test": "brittle-node test.js"
   },
   "repository": {
@@ -16,7 +18,10 @@
     "url": "https://github.com/educastellano/template-format/issues"
   },
   "homepage": "https://github.com/educastellano/template-format#readme",
-  "dependencies": {
-    "brittle": "^4.1.0"
+  "devDependencies": {
+    "brittle": "^4.1.0",
+    "lunte": "^1.8.4",
+    "prettier": "^3.9.6",
+    "prettier-config-holepunch": "^2.0.0"
   }
 }
