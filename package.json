@@ -3,6 +3,9 @@
   "version": "1.2.5",
   "description": "Simple string formatting with support for nested data.",
   "main": "index.js",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "format": "prettier --write . && lunte --fix",
     "lint": "prettier --check . && lunte",
